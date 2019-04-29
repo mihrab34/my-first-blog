@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Django's blog</title>
-</head>
-<body>
-	<div>
-<h1><a href="https://djangofoundation.com">Django Girls Blog</a></h1>
-<h2>First Experience as a Djangogirls Coach</h2>
-	</div>
-	<div>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+	     	<div class="date">
+			{{ post.published_date}}
+	     	</div>
+		<h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title}}</a></h2>
+	    <p>{{post.text|linebreaksbr}}</p>
+	    </div>
+	{% endfor %}
+{% endblock %}
+
+	<!--<div>
 		<p>published:9/4/2019, 11:18GMT</p>
 		<p>It was an awesome experience for me considering i applied as a mentee. Initially i objected to coaching my mentee whose name is Dzifa but i reconsidered since i have little knowledge about the framework and i've been able to go through the Django tutorial book.</p>
-	</div>
-</body>
-</html>
+	</div> -->
